@@ -1,5 +1,7 @@
 # Philippine Election Profile
 
+The `profiles/2025-research.yaml` profile defines a research-only sequence: begin review, repeatable case decisions, and close review. It has no voting or canvassing transitions. AES supplies the case evidence and reviewer identity; `election-ceremonies` enforces the signed run binding and audit sequence.
+
 `PhilippineSourceSnapshotBuilder` writes a read-only research registry of POP precincts and CLC source references. It deliberately contains no candidates or ballot styles. AES uses this builder for its signed 2025 source snapshot; the existing `PhilippineRegistryBuilder` continues to serve the pilot sample.
 
 `3neti/election-ph` is a Philippine driver for `3neti/election-ceremonies`. `PhilippineRegistryBuilder` converts normalized election data to a transportable SQLite registry with elections, precincts, ballot styles, contests, candidates, associations, and style-scoped `CAND00001` codes. SQLite foreign keys check references during construction. The registry is then placed in a signed election bundle by the core package.

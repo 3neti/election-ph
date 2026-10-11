@@ -1,0 +1,23 @@
+id: ph-2025-research-v1
+version: 1
+run_type: research
+stages:
+  - provision
+  - reviewing
+  - closed
+ceremonies:
+  begin_review:
+    from: provision
+    to: reviewing
+    pipes: [source_snapshot_check]
+    evidence: [source_snapshot]
+  record_decision:
+    from: reviewing
+    to: reviewing
+    pipes: [review_decision]
+    evidence: [review_decision]
+  close_review:
+    from: reviewing
+    to: closed
+    pipes: [review_report]
+    evidence: [review_report]
