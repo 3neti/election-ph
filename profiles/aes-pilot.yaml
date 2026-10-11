@@ -1,0 +1,77 @@
+id: ph-aes-pilot-v1
+version: 1
+stages:
+  - provision
+  - certification
+  - open_precinct
+  - open_polls
+  - voting
+  - close_polls
+  - counting
+  - election_return
+  - transmission
+  - final_backup
+  - custody
+  - close_precinct
+  - audit
+ceremonies:
+  certify:
+    from: provision
+    to: certification
+    pipes: []
+    evidence: []
+  open_precinct:
+    from: certification
+    to: open_precinct
+    pipes: []
+    evidence: []
+  open_polls:
+    from: open_precinct
+    to: open_polls
+    pipes: []
+    evidence: []
+  begin_voting:
+    from: open_polls
+    to: voting
+    pipes: []
+    evidence: []
+  close_polls:
+    from: voting
+    to: close_polls
+    pipes: []
+    evidence: []
+  begin_counting:
+    from: close_polls
+    to: counting
+    pipes: []
+    evidence: []
+  approve_return:
+    from: counting
+    to: election_return
+    pipes: [eml_export, truth_qr_encode]
+    evidence: [eml, truth_qr]
+  begin_handoff:
+    from: election_return
+    to: transmission
+    pipes: []
+    evidence: []
+  complete_handoff:
+    from: transmission
+    to: final_backup
+    pipes: []
+    evidence: []
+  record_custody:
+    from: final_backup
+    to: custody
+    pipes: []
+    evidence: []
+  close_precinct:
+    from: custody
+    to: close_precinct
+    pipes: []
+    evidence: []
+  begin_audit:
+    from: close_precinct
+    to: audit
+    pipes: []
+    evidence: []
